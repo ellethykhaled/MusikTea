@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.musiktea">
+
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WAKE_LOCK"
+        tools:node="replace" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".NotificationCreator"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MusikTea">
+        <activity
+            android:name=".PopActivityNewPlaylist"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.PopMe" />
+        <activity
+            android:name=".PopActivityEditPlaylist"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.PopMe" />
+        <activity
+            android:name=".PopActivityAddToPlaylist"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.PopMe" />
+        <activity
+            android:name=".PopActivitySettings"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.PopMe" />
+        <activity
+            android:name=".MusicPlayer"
+            android:exported="true"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="content" />
+                <data android:host="media" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/ogg" />
+                <data android:mimeType="application/x-ogg" />
+                <data android:mimeType="application/itunes" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MusicList"
+            android:exported="true"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".NotificationBackwardReceiver" />
+        <receiver android:name=".NotificationPlayReceiver" />
+        <receiver android:name=".NotificationForwardReceiver" />
+        <receiver android:name=".NotificationCloser" />
+    </application>
+
+</manifest>

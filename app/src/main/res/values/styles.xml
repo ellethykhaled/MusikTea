@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light_brown">#775A37</color>
+    <color name="lighter_brown">#9E8463</color>
+    <color name="dark_brown">#35291A</color>
+    <color name="brown">#5E431C</color>
+    <color name="chosen_light_red">#F54A4A</color>
+    <color name="light_green">#84CA34</color>
+    <color name="lighter_red">#FAA8A8</color>
+
+    <style name="Theme.AppCompat.PopMe">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+</resources>

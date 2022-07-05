@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Musik Tea</string>
+
+    <item name="Holder_Tag" type="id"/>
+    <item name="HeaderHolder_Tag" type="id"/>
+
+
+</resources>

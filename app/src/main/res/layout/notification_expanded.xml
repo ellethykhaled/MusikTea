@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="8dp"
+        android:background="@color/light_brown">
+
+        <ImageView
+            android:id="@+id/notificationTheme"
+            android:layout_width="12dp"
+            android:layout_height="16dp"
+            android:layout_weight="5"
+            android:src="@drawable/teatheme" />
+
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:text="Musik Tea Player"
+            android:textSize="10dp"
+            android:textStyle="italic"
+            android:textColor="#291C06"
+            android:layout_weight="25"
+            />
+
+        <ImageView
+            android:id="@+id/notificationEnder"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/notificationcross"
+            android:layout_weight="5"
+            android:layout_marginEnd="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/expandedInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/expandedSongName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Song Name"
+                android:textColor="#FFF"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/expandedArtistName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="Artist Name"
+                android:textColor="#FFF"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/expandedButtons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/expandedBackward"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="3dp"
+                android:layout_weight="1"
+                android:src="@drawable/backward" />
+
+            <ImageView
+                android:id="@+id/expandedPlay"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:src="@drawable/playbutton" />
+
+            <ImageView
+                android:id="@+id/expandedForward"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="3dp"
+                android:layout_weight="1"
+                android:src="@drawable/forward" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

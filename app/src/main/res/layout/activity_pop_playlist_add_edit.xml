@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/addplaylistshape"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".PopActivityNewPlaylist">
+
+    <TextView
+        android:id="@+id/popUpName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/addPlaylistImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:src="@drawable/addimage" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:layout_marginEnd="10dp"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/etPlaylistName"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="#FFFFFF"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/cancelNewPlaylist"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:src="@drawable/cancelnewplaylist"
+            />
+
+        <ImageView
+            android:id="@+id/addNewPlaylist"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:src="@drawable/addnewplaylist"
+            />
+    </LinearLayout>
+
+</LinearLayout>

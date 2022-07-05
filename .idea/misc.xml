@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/albumborder.xml" value="0.240625" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/artistbackground.xml" value="0.15572916666666667" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/btnborder.xml" value="0.33" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/gradient_red.xml" value="0.240625" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/gradient_red_backward.xml" value="0.240625" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/gradient_red_middle.xml" value="0.240625" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15572916666666667" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/drawable/reverse_background.xml" value="0.240625" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/activity_music_list.xml" value="0.43159922928709055" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/activity_pop_addtoplaylist.xml" value="0.11041666666666666" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/activity_pop_playlist_add_edit.xml" value="0.25" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/activity_pop_settings.xml" value="0.25" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/customdialogpermission.xml" value="0.3153526970954357" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/item_album.xml" value="0.67" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/item_artist.xml" value="0.67" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/item_folder.xml" value="0.10916919959473151" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/item_song.xml" value="0.182518115942029" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/item_song_of_album.xml" value="0.25" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/item_song_of_artist.xml" value="0.13958333333333334" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/item_song_of_queue.xml" value="1.0" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/musicplayer.xml" value="0.33" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/musicplayersingle.xml" value="0.33" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/notification_collapsed.xml" value="0.33985581874356335" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/notification_expanded.xml" value="0.2687296416938111" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/layout/notification_layout.xml" value="0.33" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15572916666666667" />
+        <entry key="..\:/Programs/MusikTea/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15572916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
