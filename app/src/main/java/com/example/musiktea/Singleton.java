@@ -1,11 +1,6 @@
 package com.example.musiktea;
 
-import static com.example.musiktea.NotificationCreator.CHANNEL_ID;
-
 import android.app.Activity;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
@@ -15,9 +10,6 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.TextView;
-
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -58,8 +50,6 @@ public class Singleton {
 
     RemoteViews collapsedView;
     RemoteViews expandedView;
-    Notification notification;
-    public static NotificationManagerCompat notificationManager;
 
     ArrayList<Integer> playListNumbers = null;
 
@@ -465,14 +455,10 @@ public class Singleton {
             updateMusicPlayerUIouter = true;
             updateMusicPlayerUIinner = true;
             updateMusicPlayerUIinner2 = true;
-            updateNotificationPlay();
         });
         updateMusicPlayerUIouter = true;
         updateMusicPlayerUIinner = true;
         updateMusicPlayerUIinner2 = true;
-        if (notification == null)
-            showNotification();
-        updateNotificationPlay();
 
     }
 
@@ -543,7 +529,6 @@ public class Singleton {
                     updateMusicPlayerUIouter = true;
                     updateMusicPlayerUIinner = true;
                     updateMusicPlayerUIinner2 = true;
-                    updateNotificationPlay();
                 });
             } catch (IOException e) {
                 e.printStackTrace();
@@ -568,118 +553,14 @@ public class Singleton {
         this.expandedView = expandedView;
     }
 
-    public Notification getNotification() {
-        return notification;
-    }
-
-    public void setNotification(Notification notification) {
-        this.notification = notification;
-    }
-
-    public void showNotification() {
-
-        setCollapsedView(new RemoteViews(outerActivity.getPackageName(),
-                R.layout.notification_collapsed));
-
-        setExpandedView(new RemoteViews(outerActivity.getPackageName(),
-                R.layout.notification_expanded));
-
-        if (mediaPlayer != null) {
-            if (mediaPlayer.isPlaying()) {
-                collapsedView.setImageViewResource(R.id.collapsedPlay, R.drawable.playbutton);
-                expandedView.setImageViewResource(R.id.expandedPlay, R.drawable.playbutton);
-            } else {
-                collapsedView.setImageViewResource(R.id.collapsedPlay, R.drawable.pause);
-                expandedView.setImageViewResource(R.id.expandedPlay, R.drawable.pause);
-            }
-        } else {
-            collapsedView.setImageViewResource(R.id.collapsedPlay, R.drawable.playbutton);
-            expandedView.setImageViewResource(R.id.expandedPlay, R.drawable.playbutton);
-        }
-
-
-        Intent playClickIntent = new Intent(outerActivity, NotificationPlayReceiver.class);
-        PendingIntent playClickPendingIntent = PendingIntent.getBroadcast(outerActivity, 11, playClickIntent, 0);
-
-        Intent backwardClickIntent = new Intent(outerActivity, NotificationBackwardReceiver.class);
-        PendingIntent backwardClickPendingIntent = PendingIntent.getBroadcast(outerActivity, 12, backwardClickIntent, 0);
-
-        Intent forwardClickIntent = new Intent(outerActivity, NotificationForwardReceiver.class);
-        PendingIntent forwardClickPendingIntent = PendingIntent.getBroadcast(outerActivity, 13, forwardClickIntent, 0);
-
-        Intent endClickIntent = new Intent(outerActivity, NotificationCloser.class);
-        PendingIntent endClickPendingIntent = PendingIntent.getBroadcast(outerActivity, 14, endClickIntent, 0);
-
-        Intent openClickIntent = new Intent(outerActivity, MusicList.class);
-        PendingIntent openClickPendingIntent = PendingIntent.getActivity(outerActivity, 15, openClickIntent, 0);
-
-        collapsedView.setOnClickPendingIntent(R.id.collapsedBackward, backwardClickPendingIntent);
-        collapsedView.setOnClickPendingIntent(R.id.collapsedPlay, playClickPendingIntent);
-        collapsedView.setOnClickPendingIntent(R.id.collapsedForward, forwardClickPendingIntent);
-        collapsedView.setOnClickPendingIntent(R.id.notificationEnder, endClickPendingIntent);
-        collapsedView.setOnClickPendingIntent(R.id.collapsedInfo, openClickPendingIntent);
-
-        expandedView.setOnClickPendingIntent(R.id.expandedBackward, backwardClickPendingIntent);
-        expandedView.setOnClickPendingIntent(R.id.expandedPlay, playClickPendingIntent);
-        expandedView.setOnClickPendingIntent(R.id.expandedForward, forwardClickPendingIntent);
-        expandedView.setOnClickPendingIntent(R.id.notificationEnder, endClickPendingIntent);
-        expandedView.setOnClickPendingIntent(R.id.expandedInfo, openClickPendingIntent);
-
-        setNotificationSettings();
-        notificationManager.notify(1, notification);
-    }
-
-    public void setNotificationSettings() {
-        Intent endClickIntent = new Intent(outerActivity, NotificationCloser.class);
-        PendingIntent endClickPendingIntent = PendingIntent.getBroadcast(outerActivity, 14, endClickIntent, 0);
-        setNotification(new NotificationCompat.Builder(outerActivity.getApplicationContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.teatheme)
-                .setPriority(NotificationManagerCompat.IMPORTANCE_MAX)
-                .setCustomContentView(collapsedView)
-                .setCustomBigContentView(expandedView)
-                .setOngoing(mediaPlayer != null && mediaPlayer.isPlaying())
-                .setDeleteIntent(endClickPendingIntent)
-                .build());
-    }
-
     public void toggleNotificationSong() {
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
-            collapsedView.setImageViewResource(R.id.collapsedPlay, R.drawable.playbutton);
-            expandedView.setImageViewResource(R.id.expandedPlay, R.drawable.playbutton);
         } else {
             mediaPlayer.start();
-            collapsedView.setImageViewResource(R.id.collapsedPlay, R.drawable.pause);
-            expandedView.setImageViewResource(R.id.expandedPlay, R.drawable.pause);
             mediaPlayer.setWakeMode(outerActivity.getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
         }
         updateMusicPlayerUIouter = true;
         updateMusicPlayerUIinner = true;
-        setNotificationSettings();
-        notificationManager.notify(1, notification);
-    }
-
-    public void updateNotificationPlay() {
-        try {
-            if (mediaPlayer.isPlaying()) {
-                collapsedView.setImageViewResource(R.id.collapsedPlay, R.drawable.pause);
-                expandedView.setImageViewResource(R.id.expandedPlay, R.drawable.pause);
-            } else {
-                collapsedView.setImageViewResource(R.id.collapsedPlay, R.drawable.playbutton);
-                expandedView.setImageViewResource(R.id.expandedPlay, R.drawable.playbutton);
-            }
-        } catch (Exception e) {
-            notificationManager.cancel(1);
-            return;
-        }
-
-        if (currentSong != null) {
-            collapsedView.setTextViewText(R.id.collapsedSongName, currentSong.getTitle());
-            collapsedView.setTextViewText(R.id.collapsedArtistName, currentSong.getArtist());
-            expandedView.setTextViewText(R.id.expandedSongName, currentSong.getTitle());
-            expandedView.setTextViewText(R.id.expandedArtistName, currentSong.getArtist());
-        }
-        setNotificationSettings();
-        notificationManager.notify(1, notification);
     }
 }

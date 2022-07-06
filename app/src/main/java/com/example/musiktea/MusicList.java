@@ -1,6 +1,5 @@
 package com.example.musiktea;
 
-import static com.example.musiktea.Singleton.notificationManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,7 +9,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -47,6 +45,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 
@@ -156,7 +155,7 @@ public class MusicList extends AppCompatActivity {
                         if ((focusChange == AudioManager.AUDIOFOCUS_LOSS || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) && Singleton.getInstance().getMediaPlayer() != null) {
                             if (Singleton.getInstance().getMediaPlayer().isPlaying())
                                 Singleton.getInstance().toggleNotificationSong();
-                        } else if ((focusChange == AudioManager.AUDIOFOCUS_GAIN || focusChange == AudioManager.AUDIOFOCUS_GAIN_TRANSIENT) && Singleton.getInstance().getMediaPlayer() != null && Singleton.getInstance().getNotification() != null) {
+                        } else if ((focusChange == AudioManager.AUDIOFOCUS_GAIN || focusChange == AudioManager.AUDIOFOCUS_GAIN_TRANSIENT) && Singleton.getInstance().getMediaPlayer() != null) {
                             if (!Singleton.getInstance().getMediaPlayer().isPlaying())
                                 Singleton.getInstance().toggleNotificationSong();
                         }
@@ -168,7 +167,7 @@ public class MusicList extends AppCompatActivity {
                         if ((focusChange == AudioManager.AUDIOFOCUS_LOSS || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) && Singleton.getInstance().getMediaPlayer() != null)
                             if (Singleton.getInstance().getMediaPlayer().isPlaying())
                                 Singleton.getInstance().toggleNotificationSong();
-                            else if ((focusChange == AudioManager.AUDIOFOCUS_GAIN || focusChange == AudioManager.AUDIOFOCUS_GAIN_TRANSIENT) && Singleton.getInstance().getMediaPlayer() != null && Singleton.getInstance().getNotification() != null)
+                            else if ((focusChange == AudioManager.AUDIOFOCUS_GAIN || focusChange == AudioManager.AUDIOFOCUS_GAIN_TRANSIENT) && Singleton.getInstance().getMediaPlayer() != null)
                                 if (!Singleton.getInstance().getMediaPlayer().isPlaying())
                                     Singleton.getInstance().toggleNotificationSong();
                     },
@@ -348,6 +347,7 @@ public class MusicList extends AppCompatActivity {
                 savePlaylists();
                 selectionOptionsSongs.setVisibility(View.GONE);
                 selectedItems.clear();
+                selectedItems = null;
                 songsAdapter.notifyDataSetChanged();
                 return;
             }
@@ -1284,8 +1284,6 @@ public class MusicList extends AppCompatActivity {
             outerChanger.start();
         }
         Singleton.getInstance().setOuterActivity(this);
-
-        notificationManager = NotificationManagerCompat.from(this);
 
         if (bitmapSetter == null) {
             bitmapSetter = new Thread(() -> {
@@ -2376,7 +2374,7 @@ public class MusicList extends AppCompatActivity {
                     getFolderChildren(parentFile);
                 } else {
                     folderArrayList.clear();
-                    getFolderChildren(parentFile.getParentFile());
+                    getFolderChildren(Objects.requireNonNull(parentFile.getParentFile()));
                     foldersAdapter.setFolderImage(foldersImage);
                     foldersAdapter.notifyDataSetChanged();
                 }
@@ -2521,7 +2519,7 @@ public class MusicList extends AppCompatActivity {
                 play.setImageResource(R.drawable.pause);
             else
                 play.setImageResource(R.drawable.playbutton);
-            Singleton.getInstance().showNotification();
+            //Singleton.getInstance().showNotification();
         }
         if (Singleton.getInstance().getPlayListNumbers() != null && Singleton.getInstance().getViewState() == "Songs") {
             if (!(Singleton.getInstance().getPlayListNumbers().size() == 1 && Singleton.getInstance().getPlayListNumbers().get(0) == playlistList.size())) {
@@ -2555,20 +2553,6 @@ public class MusicList extends AppCompatActivity {
             Singleton.getInstance().getPlayListNumbers().clear();
             Singleton.getInstance().setPlayListNumbers(null);
         }
-
-        if (Singleton.getInstance().notification != null)
-            Singleton.getInstance().updateNotificationPlay();
-
-        if (Singleton.getInstance().getMediaPlayer() == null)
-            notificationManager.cancel(1);
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (Singleton.getInstance().getMediaPlayer() == null || !Singleton.getInstance().getMediaPlayer().isPlaying())
-            notificationManager.cancel(1);
-
-        super.onDestroy();
     }
 
     @Override

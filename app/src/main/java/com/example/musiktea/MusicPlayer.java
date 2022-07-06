@@ -1,6 +1,5 @@
 package com.example.musiktea;
 
-import static com.example.musiktea.Singleton.notificationManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -195,11 +194,6 @@ public class MusicPlayer extends AppCompatActivity implements View.OnClickListen
         tvTime.setText(elapsedTime);
         seekBarTime.setProgress((int) current);
 
-        if (Singleton.getInstance().getNotification() == null)
-            Singleton.getInstance().showNotification();
-        else
-            Singleton.getInstance().updateNotificationPlay();
-
         Singleton.getInstance().setInnerActivity(this);
     }
 
@@ -252,7 +246,6 @@ public class MusicPlayer extends AppCompatActivity implements View.OnClickListen
                 Singleton.getInstance().updateMusicPlayerUIouter = true;
                 Singleton.getInstance().updateMusicPlayerUIinner = true;
                 Singleton.getInstance().updateMusicPlayerUIinner2 = true;
-                Singleton.getInstance().updateNotificationPlay();
             });
         }
         Singleton.getInstance().setCurrentSong(song);
@@ -287,7 +280,6 @@ public class MusicPlayer extends AppCompatActivity implements View.OnClickListen
                 setResult(1, intent);
                 Singleton.getInstance().getMediaPlayer().start();
             }
-            Singleton.getInstance().updateNotificationPlay();
         }
 
         if (view.getId() == R.id.repeat)        //Repeat Button
@@ -422,13 +414,5 @@ public class MusicPlayer extends AppCompatActivity implements View.OnClickListen
     protected void onPause() {
         Singleton.getInstance().updateSavedSettings(null);
         super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        //Singleton.getInstance().showNotification();
-        if (Singleton.getInstance().getMediaPlayer() == null || !Singleton.getInstance().getMediaPlayer().isPlaying())
-            notificationManager.cancel(1);
-        super.onDestroy();
     }
 }
